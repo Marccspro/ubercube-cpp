@@ -3,12 +3,16 @@ CC = g++
 WIN_LDFLAGS = -lglfw3 -lglew32 -lopengl32 -lgdi32
 INCLUDES = includes/
 LIBS = libs/
-FILES = main.cpp display.cpp
+FILES = main.cpp \
+		display.cpp \
+		vec3.cpp \
+		mat4.cpp \
+		quat.cpp
+
 SRCS = $(addprefix src/,$(FILES))
 OBJS = $(FILES:.cpp=.o)
 
 all: $(NAME)
-
 $(NAME):
 	$(CC) -c $(SRCS) -I $(INCLUDES) -L $(LIBS) $(WIN_LDFLAGS)
 	$(CC) -o $(NAME) $(OBJS) -L $(LIBS) $(WIN_LDFLAGS)
