@@ -6,14 +6,14 @@ int     main(int argc, char **argv)
 {
     Display *display = new Display("ubercube", 1280, 720);
 
-    while (!display->isClosed())
+    while (!display->is_closed())
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        
 
-        if (display->wasResized())
-            glViewport(0, 0, display->getWidth(), display->getHeight());
+
+        if (display->was_resized())
+            glViewport(0, 0, display->get_width(), display->get_height());
         display->update();
     }
 

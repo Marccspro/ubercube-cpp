@@ -7,18 +7,18 @@
 class Display
 {
 private:
-    GLFWwindow *m_Window;
+    GLFWwindow *m_window;
 
-    std::string m_Title;
+    std::string m_title;
 
-    int m_Width;
-    int m_Height;
+    int m_width;
+    int m_height;
 
-    int m_LastWidth;
-    int m_LastHeight;
+    int m_last_width;
+    int m_last_height;
 
-    bool m_Resized;
-    bool m_Closed;
+    bool m_resized;
+    bool m_closed;
 
     void create(const char *title, int width, int height);
 
@@ -28,17 +28,16 @@ public:
 
     void update();
 
-    void setTitle(const char* title);
-    const char *getTitle();
+    void set_title(const char* title);
+    const char *get_title();
 
-    inline GLFWwindow *getWindow() { return m_Window; };
+    inline GLFWwindow *get_window() { return m_window; };
 
-    inline int getWidth() { return m_Width; };
-    inline int getHeight() { return m_Height; };
+    inline int get_width() { return m_width; };
+    inline int get_height() { return m_height; };
 
-    inline bool wasResized() { return m_Resized; };
-    inline bool isClosed() { return m_Closed; };
-
+    inline bool was_resized() { return m_resized; };
+    inline bool is_closed() { return m_closed; };
 };
 
 #endif

@@ -2,15 +2,15 @@
 
 Display::Display(const char *title, int width, int height)
 {
-    m_Width = width;
-    m_Height = height;
+    m_width = width;
+    m_height = height;
 
     Display::create(title, width, height);
 }
 
 void Display::create(const char *title, int width, int height)
 {
-    m_Title = title;
+    m_title = title;
     if (!glfwInit())
     {
         std::cerr << "Couldn't initialize glfw !" << std::endl;
@@ -21,16 +21,17 @@ void Display::create(const char *title, int width, int height)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 
-    m_Window = glfwCreateWindow(width, height, m_Title.c_str(), NULL, NULL);
+    m_window = glfwCreateWindow(width, height, m_title.c_str(), NULL, NULL);
 
-    if (!m_Window) {
+    if (!m_window)
+	{
         glfwTerminate();
         std::cerr << "GLFW window creation failed !" << std::endl;
         return;
     }
 
     glfwSwapInterval(0);
-    glfwMakeContextCurrent(m_Window);
+    glfwMakeContextCurrent(m_window);
 }
 
 Display::~Display()
@@ -41,28 +42,29 @@ Display::~Display()
 void Display::update()
 {
     glfwPollEvents();
-	glfwSwapBuffers(m_Window);
-	glfwGetWindowSize(m_Window, &m_Width, &m_Height);
+	glfwSwapBuffers(m_window);
+	glfwGetWindowSize(m_window, &m_width, &m_height);
 
-	m_Resized = false;
+	m_resized = false;
 
-	if (m_LastWidth != m_Width || m_LastHeight != m_Height) {
-		m_LastWidth = m_Width;
-		m_LastHeight = m_Height;
+	if (m_last_width != m_width || m_last_height != m_height)
+	{
+		m_last_width = m_width;
+		m_last_height = m_height;
 
-		m_Resized = true;
+		m_resized = true;
 	}
 
-    m_Closed = glfwWindowShouldClose(m_Window) == 1;
+    m_closed = glfwWindowShouldClose(m_window) == 1;
 }
 
-void Display::setTitle(const char* title)
+void Display::set_title(const char* title)
 {
-    m_Title = title;
-    glfwSetWindowTitle(m_Window, title);
+    m_title = title;
+    glfwSetWindowTitle(m_window, title);
 }
 
-const char *Display::getTitle()
+const char *Display::get_title()
 {
-    return m_Title.c_str();
+    return m_title.c_str();
 }
