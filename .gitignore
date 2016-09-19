@@ -28,5 +28,5 @@
 *.out
 *.app
 
-./includes/GL/*.h
-./includes/GLFW/*.h
+includes/GL/*.h
+includes/GLFW/*.h
