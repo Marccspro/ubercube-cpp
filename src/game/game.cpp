@@ -52,7 +52,7 @@ void Game::update()
 
 void Game::render(Shader *shader)
 {
-	shader->setUniform((char*)"modelViewMatrix", maths::mat4::identity());
+	shader->setUniform((char*)"modelViewMatrix", maths::mat4::translate(0, 0, 0));
 
 	glBindVertexArray(vao);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

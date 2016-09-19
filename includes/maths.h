@@ -102,11 +102,6 @@ namespace maths
 		inline vec3 div(vec3 v) { return div(v.m_x, v.m_y, v.m_z); };
 
 		inline vec3 copy() { return vec3(m_x, m_y, m_z); };
-
-		inline bool operator == (vec3 v)
-		{
-			return m_x == v.m_x && m_y == v.m_y && m_z == v.m_z;
-		}
     };
 
     class mat4
