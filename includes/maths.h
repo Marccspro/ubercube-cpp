@@ -107,10 +107,6 @@ namespace maths
 		{
 			return m_x == v.m_x && m_y == v.m_y && m_z == v.m_z;
 		}
-
-		inline void set_x(float x) { m_x = x; };
-		inline void set_y(float y) { m_y = y; };
-		inline void set_z(float z) { m_z = z; };
     };
 
     class mat4

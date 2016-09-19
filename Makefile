@@ -1,28 +1,34 @@
-NAME = ubercube
-CC = g++
-WIN_LDFLAGS = -lglfw3 -lglew32 -lopengl32 -lgdi32
-INCLUDES = includes/
-LIBS = libs/
-FILES = main.cpp \
-		display.cpp \
-		vec3.cpp \
-		mat4.cpp \
-		quat.cpp
+FILES	=	main.cpp															\
+			engine/graphics/display.cpp											\
+			engine/maths/vec3.cpp												\
+			engine/maths/mat4.cpp												\
+			engine/maths/quat.cpp												\
+			engine/graphics/shader.cpp											\
+			engine/utils/error.cpp												\
+			engine/utils/string_utils.cpp										\
+			engine/utils/file_utils.cpp											\
+			engine/maths/transform.cpp											\
+			game/game.cpp
 
-SRCS = $(addprefix src/,$(FILES))
-OBJS = $(FILES:.cpp=.o)
+NAME = ubercube
+CXX = g++
+LDFLAGS = -lglfw3 -lglew32 -lopengl32 -lgdi32
+CXXFLAGS = -I includes/ -std=c++11 -L libs/ $(LDFLAGS)
+SRC = $(addprefix src/,$(FILES))
+OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
-$(NAME):
-	$(CC) -c $(SRCS) -I $(INCLUDES) -L $(LIBS) $(WIN_LDFLAGS)
-	$(CC) -o $(NAME) $(OBJS) -L $(LIBS) $(WIN_LDFLAGS)
+
+ubercube: $(OBJ)
+	$(CXX) -o $@ $^ $(CXXFLAGS)
+
+%.o: %.cpp
+	$(CXX) -o $@ -c $< $(CXXFLAGS)
+
+.PHONY: clean fclean
 
 clean:
-	rm -f $(OBJS)
+	del $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+	del $(NAME)

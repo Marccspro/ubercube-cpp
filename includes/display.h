@@ -2,7 +2,7 @@
 # define DISPLAY_H
 
 # include <iostream>
-# include <GLFW/glfw3.h>
+# include "gl_utils.h"
 
 class Display
 {
